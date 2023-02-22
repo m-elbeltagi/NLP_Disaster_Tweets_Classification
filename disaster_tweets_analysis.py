@@ -19,9 +19,9 @@ import sys
 ## the first part of the file, along with the check function was just for exploring the dataset, when running just call the preprocess function 
 
 
-
-save_path = r'C:\Users\M\OneDrive - Carleton University\Documents\my_stuff\Projects\kaggle_NLP_disaster_tweets'
-load_path = r'C:\Users\M\OneDrive - Carleton University\Documents\my_stuff\Projects\kaggle_NLP_disaster_tweets\DisasterClassifier_weights_2ndRun_CLS_400Epochs.pt'
+## put your save path, for saving model wights here, and loading saved model weights 
+save_path = r''
+load_path = r''
 
 
 ## setting device
@@ -38,8 +38,9 @@ n_epochs = 400
 learning_rate = 0.00001  
 beta1 = 0.5         
 
-raw_train_data = pd.read_csv(r'C:\Users\M\OneDrive - Carleton University\Documents\my_stuff\Projects\kaggle_NLP_disaster_tweets\train.csv')
-raw_test_data = pd.read_csv(r'C:\Users\M\OneDrive - Carleton University\Documents\my_stuff\Projects\kaggle_NLP_disaster_tweets\test.csv')
+## put the paths to the train & test data
+raw_train_data = pd.read_csv(r'')
+raw_test_data = pd.read_csv(r'')
 
 train_dataset = raw_train_data[['text', 'target']]
 test_dataset = raw_test_data[['text']]
@@ -228,7 +229,7 @@ def prepare_torch_trainset(train_dataset_hidden):
 
 # train_loader, val_loader = prepare_torch_trainset(train_dataset_hidden)
 
-## remove from GPU memory
+## remove from GPU memory to free memory
 del transformer
 
 
