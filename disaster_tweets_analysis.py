@@ -16,7 +16,7 @@ from sklearn.preprocessing import MinMaxScaler
 import datetime
 import sys 
 
-## the first part of the file, along with the check function was just for exploring the dataset, when running just call the preprocess function 
+## the first part of the file, along with the check function was just for exploring the dataset, when running just call the preprocess_dataset function which acts as a pipeline
 
 
 ## put your save path, for saving model wights here, and loading saved model weights 
