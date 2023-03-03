@@ -85,31 +85,6 @@ transformer = AutoModel.from_pretrained(model_name).to(device)
 
 def tokenize(batch):
     return tokenizer(list(batch['text']), padding=True, truncation=True)          ##padding fills to match the largest text size in the batch, truncation truncates anything longer than context size (which as we've checked we don't have any)
-
-
-
-## just used to check if tokenization is as expected, should produce the same result given the same index (up to padding), or something is wrong
-def check_enc(train_dataset, i):
-    train_dataset_enc= train_dataset.map(tokenize, batched=True, batch_size=None)               
-    
-    train_dataset = Dataset.from_pandas(train_dataset)                      
-    train_dataset.set_format(type='pandas')                                 
-    train_dataframe = train_dataset[:]
-    
-    print (train_dataframe['text'][i] + '\n')
-    encoded_text = tokenizer('\n' + train_dataframe['text'][i] + '\n')
-    print (encoded_text)
-
-    # tokens = tokenizer.convert_ids_to_tokens(encoded_text['input_ids'])
-    # print (tokens)
-    
-    print ('-----------------------------------------------------')
-    print (train_dataset_enc['input_ids'][i])  
-    print (train_dataset_enc['attention_mask'][i])  
-    
-    
-
-    
  
 
 ## checking if forward pass of imported model works 
