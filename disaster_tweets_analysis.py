@@ -84,7 +84,7 @@ transformer = AutoModel.from_pretrained(model_name).to(device)
 
 
 def tokenize(batch):
-    return tokenizer(list(batch['text']), padding=True, truncation=True)          ##padding fills to match the largest text size in the batch, truncation truncates anything longer than context size (which as we've checked we don't have any), list is to apply it to each entry in the batch, (but when just testing on one text entry, list affects the text)
+    return tokenizer(batch['text'], padding=True, truncation=True)          ##padding fills to match the largest text size in the batch, truncation truncates anything longer than context size (which as we've checked we don't have any)
  
 
 ## checking if forward pass of imported model works 
@@ -129,8 +129,6 @@ def extract_hidden_state(batch, transformer=transformer):
 
 def preprocess_dataset(dataset):
     arrow_dataset = Dataset.from_pandas(dataset)
-    arrow_dataset.set_format(type='pandas')
-    
     arrow_dataset= arrow_dataset.map(tokenize, batched=True, batch_size=None)                                  ## tokenizing the dataset, bacth_size = None applies it to the dataset as a whole (as a single batch), if not set to None, then needs to match the training batch size
     
     arrow_dataset.set_format(type='torch')
