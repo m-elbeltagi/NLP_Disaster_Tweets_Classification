@@ -118,7 +118,7 @@ def extract_hidden_state(batch, transformer=transformer):
     
         #### first run was with "transformer(input_ids, attention_mask).last_hidden_state" but common for classification to just use the hidden_state associated with the [CLS] token (so add "[:,0]" because it's the first token), see book, run with this to compare performance, should also be quicker because dealing with less parameters, also this is what you use for UMAP, because it needs 2D input, but if ou keep all (84 in this case) tokens then the tensor for hidden_state is 3D
         
-    ## free up memory, and I double checked it didn't affect the output hidden states, but does it actually free if I delete inside function?
+    ## free up memory, and I double checked it didn't affect the output hidden states
     del input_ids
     del attention_mask
     
