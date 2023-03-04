@@ -84,7 +84,7 @@ transformer = AutoModel.from_pretrained(model_name).to(device)
 
 
 def tokenize(batch):
-    return tokenizer(list(batch['text']), padding=True, truncation=True)          ##padding fills to match the largest text size in the batch, truncation truncates anything longer than context size (which as we've checked we don't have any)
+    return tokenizer(list(batch['text']), padding=True, truncation=True)          ##padding fills to match the largest text size in the batch, truncation truncates anything longer than context size (which as we've checked we don't have any), list is to apply it to each entry in the batch, (but when just testing on one text entry, list affects the text)
  
 
 ## checking if forward pass of imported model works 
